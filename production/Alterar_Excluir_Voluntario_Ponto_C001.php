@@ -1,0 +1,169 @@
+<?php
+session_start();
+if($_SESSION['logado'] != true){
+    header("Location: Usuario_Login.php?url=".$_SERVER['PHP_SELF']);
+}
+        
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--         Bootstrap -->
+        <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!--         Font Awesome -->
+        <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+        <!--         iCheck -->
+        <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+        <!--         Custom Theme Style -->
+        <link href="../build/css/custom.min.css" rel="stylesheet">
+        
+        
+        <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+
+        
+        
+        
+        <link type="text/css" rel="stylesheet" href="../build/css/DataTables/jquery.dataTables.css" />
+        <link type="text/css" rel="stylesheet" href="../build/css/DataTables/extensions/dataTables.colVis.css" />
+        <link type="text/css" rel="stylesheet" href="../build/css/DataTables/extensions/extensions/dataTables.tableTools.css" />
+
+    </head>
+
+    <body class="nav-md">
+
+        <div class="container body">
+            <div class="main_container">
+
+                <?php include 'menu.php'; ?>
+
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+
+                        <div class="clearfix"></div>
+
+                        <div class="row">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+
+                                        <div class="x_content">
+                                            <button type="button" id="btnNovo" name="btnNovo" class="btn btn-primary  fa fa-file-o "> Adicionar</button>
+
+                                            <button type="button" id="btnEditar" name="btnEditar" class="btn btn-success  fa fa-edit "> Editar</button>
+
+                                            <button type="button" id="btnExcluir" name="btnExcluir" class="btn btn-danger  fa fa-trash-o "> Excluir</button>
+
+                                            <div class="ln_solid"></div>
+                                        </div>
+
+                                        
+                                <div class="form-group">
+                                    <input type="hidden" id="codigo_ponto" name="codigo_ponto" 
+                                           value="  <?php
+                                           if ($_POST['codigo_ponto'] > 0) {
+                                               $codigo_ponto = $_POST['codigo_ponto'];
+                                               echo $codigo_ponto;
+                                           } else
+                                               echo '0';
+                                           ?>"
+                                           >  <!-- CHAVE DA TABELA-->
+                                    
+
+                                    
+                                    <input type="hidden" id="acao" name="acao" 
+                                           value="<?php
+                                           if ($_POST['acao'] > '') {
+                                               $acao = $_POST['acao'];
+                                               echo $acao;
+                                           } else
+                                               echo 'novo';
+                                           ?>"
+                                           >  <!-- ACAO QUE SERA FEITA NA TELA-->                                                
+
+<!--                                                <input type="text" class="form-control input-lg" id="nome" name="nome" required>
+<label for="large4">Nome</label>-->
+
+                                </div>
+
+                                        
+
+                                        <table id="datatable-ponto-voluntario"  name="datatable-ponto-voluntario" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Ponto</th>
+                                                    <th>Voluntario</th>
+                                                    <th>Periodo</th>
+                                                    <th>Codigo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        TPE - Piracicaba - <a href="https://www.jw.org">jw.org</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+
+        
+        
+        <!--         jQuery -->
+        <script src="../vendors/jquery/dist/jquery.min.js"></script>
+
+        <!--         Bootstrap -->
+        <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!--         Datatables -->
+        <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+
+      
+<!--        acrescentei dia 20/08/2016-->
+<!--        <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>-->
+<!--        fim da alteracao        -->
+        
+    
+    
+<!--    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>-->
+        
+        
+        <script src="Alterar_Excluir_Voluntario_Ponto_C001_ajax.js"></script>
+
+        <!--         Custom Theme Scripts -->
+        <script src="../build/js/custom.min.js"></script>
+
+    </body>
+</html>
